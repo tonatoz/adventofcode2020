@@ -20,3 +20,9 @@
 (defn load-ints
   [day]
   (map #(Integer/parseInt %) (load-lines day)))
+
+(defn load-groups
+  [day]
+  (->> (load-lines day)
+       (partition-by #{""})
+       (filter #(not= '("") %))))

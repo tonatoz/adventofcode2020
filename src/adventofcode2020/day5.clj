@@ -38,5 +38,5 @@
        (map get-place)
        (result-fn)))
 
-(println "Day 5 first answer" (solve input #(apply max %)))
-(println "Day 5 second answer" (solve input find-my-seat))
+(println "Day 5 first answer is" (solve input #(apply max %)))
+(println "Day 5 second answer is" (solve input find-my-seat))

@@ -9,7 +9,10 @@
   [pass low-bound hight-bound]
   (first
    (reduce (fn [[low hight] direction]
-             (let [med (int (+ low (/ (- hight low) 2.0)))]
+             (let [med (-> (- hight low)
+                           (/ 2)
+                           (+ low)
+                           (int))]
                (case direction
                  (\F \L) [low med]
                  (\B \R) [(inc med) hight])))
@@ -24,13 +27,11 @@
 
 (defn find-my-seat
   [ids]
-  (->> ids
-       (sort)
+  (->> (sort ids)
        (partition 3 1)
        (filter (fn [[a b c]] (not= (inc a) b (dec c))))
-       (first)
-       (second)
-       (inc)))
+       (ffirst)
+       (+ 2)))
 
 (defn solve
   [in result-fn]

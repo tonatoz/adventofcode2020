@@ -19,9 +19,9 @@
 
 (defn check-letter-at-position [{:keys [min max letter password]}]
   (let [password-letters (mapv str password)
-        checks (map #(= letter (get password-letters (dec %) "?")) [min max])]
-    (and (some true? checks)
-         (some false? checks))))
+        [a b] (map #(= letter (get password-letters (dec %) "?")) [min max])]
+    (and (or a b)
+         (not (and a b)))))
 
 (defn solve [in check-fn]
   (->> in

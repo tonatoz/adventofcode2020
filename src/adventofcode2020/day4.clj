@@ -45,10 +45,9 @@
 
 (defn parse-line
   [line]
-  (->> (str/split (str/join " " line) #" ")
-       (mapcat (fn [x]
-                 (let [[k v] (str/split x #":")]
-                   [(keyword k) v])))
+  (->> (mapcat #(str/split % #" ") line)
+       (mapcat #(let [[k v] (str/split % #":")]
+                  [(keyword k) v]))
        (apply hash-map)))
 
 (defn solve

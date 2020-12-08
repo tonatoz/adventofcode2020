@@ -31,11 +31,11 @@
 (defn execute-op [{:keys [code pos] :as c}]
   (let [{:keys [op arg]} (get code pos)]
     (-> (case op
-          :acc (-> (update c :acc #(+ % arg))
+          :acc (-> (update c :acc + arg)
                    (update :pos inc))
-          :jmp (update c :pos #(+ % arg))
+          :jmp (update c :pos + arg)
           :nop (update c :pos inc))
-        (update :visited-pos #(conj % pos)))))
+        (update :visited-pos conj pos))))
 
 (defn run-code [{:keys [code acc pos visited-pos] :as c}]
   (cond

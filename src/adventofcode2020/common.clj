@@ -19,7 +19,7 @@
 
 (defn load-ints
   [day]
-  (map #(Integer/parseInt %) (load-lines day)))
+  (map #(Long/parseLong %) (load-lines day)))
 
 (defn load-groups
   [day]

@@ -7,7 +7,7 @@
    (fn [value]
      (try
        (Integer/parseInt value)
-       (catch Exception e
+       (catch Exception _
          ::s/invalid)))))
 
 (defn load-lines
